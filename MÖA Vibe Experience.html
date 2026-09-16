@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!-- saved from url=(0131)file:///C:/Users/maria/AppData/Local/Temp/2b43b8de-c541-4f91-be96-d0aff5d9ff9d_MOA_Vibe_Experience_Web_App%20(2).zip.f9d/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MÖA Vibe Experience</title>
+<style>
+:root{--ink:#40362d;--muted:#8b7c6c;--paper:#f8f2e9;--line:#e5d8c8;--brown:#8b7864;--green:#e2e5db}
+*{box-sizing:border-box}body{margin:0;background:#eee5da;color:var(--ink);font-family:Georgia,serif}
+.app{max-width:720px;margin:24px auto;background:var(--paper);border:1px solid var(--line);border-radius:28px;overflow:hidden;box-shadow:0 12px 40px #40362d18}
+header{display:flex;justify-content:space-between;align-items:center;padding:22px 26px;border-bottom:1px solid var(--line)}
+.logo{font-size:30px;letter-spacing:5px}.eyebrow{font:10px Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+main{padding:28px}.screen{display:none}.screen.active{display:block}
+.hero{height:210px;border-radius:20px;background:linear-gradient(135deg,#d7c2ac,#f0e5d7);display:grid;place-items:center;text-align:center}
+.hero .logo{font-size:66px}.tag{font:11px Arial,sans-serif;letter-spacing:3px}
+h1,h2,h3{font-weight:normal}h1{font-size:38px;font-style:italic;line-height:1.1}h2{font-size:32px;font-style:italic}p,li{font:14px/1.7 Arial,sans-serif;color:var(--muted)}
+button{cursor:pointer}button:focus-visible{outline:3px solid #9aaabd;outline-offset:3px}
+.btn{width:100%;border:1px solid var(--brown);border-radius:999px;padding:14px 18px;margin-top:12px;font:13px Arial,sans-serif;background:transparent;color:var(--ink)}
+.primary{background:var(--brown);color:white}.choice{width:100%;display:flex;justify-content:space-between;text-align:left;padding:15px;border:1px solid var(--line);border-radius:14px;background:#fffaf4;margin:9px 0;font:14px Arial,sans-serif;color:var(--ink)}.choice.selected{background:#eee4d7;border-color:var(--brown)}
+.progress{height:5px;background:var(--line);border-radius:99px;margin:18px 0 28px}.progress>div{height:100%;background:var(--brown);border-radius:99px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.tile{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fffaf4;text-align:left}.tile .pic{height:110px;background:linear-gradient(135deg,#e8d6c6,#cbb59e);display:grid;place-items:center;font-size:38px}.tile .body{padding:13px}.tile h3{font-size:18px;margin:5px 0}.tile p{font-size:12px;margin:0}.list{display:grid;gap:12px}.item{display:flex;gap:14px;padding:12px;border:1px solid var(--line);border-radius:16px;background:#fffaf4;text-align:left}.item .pic{width:84px;height:84px;flex:none;border-radius:12px;background:#e8d6c6;display:grid;place-items:center;font-size:30px}.item h3{margin:3px 0;font-size:19px}.item p{font-size:12px;margin:0}.panel{background:#e7dfd5;border-radius:18px;padding:22px;margin-top:18px}.tags{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}.pill{border:1px solid var(--line);border-radius:99px;padding:7px 11px;font:11px Arial,sans-serif;color:var(--muted)}
+nav{display:flex;border-top:1px solid var(--line);padding:8px;background:#fbf6ef}nav button{flex:1;border:0;background:none;color:var(--muted);font:11px Arial,sans-serif;padding:10px 4px}nav button.active{color:var(--ink);font-weight:bold}
+.small{font-size:12px}.back{border:0;background:none;color:var(--muted);font:12px Arial,sans-serif;padding:0}
+@media(max-width:520px){body{background:var(--paper)}.app{margin:0;border-radius:0;border:0;box-shadow:none;min-height:100vh}main{padding:22px}.hero{height:180px}h1{font-size:34px}.grid{gap:10px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div class="logo">MÖA</div><div class="eyebrow">Café · Create · Connect</div></header>
+<main>
+<section id="welcome" class="screen">
+<div class="hero"><div><div class="logo">MÖA</div><div class="tag">CAFÉ · CREATE · CONNECT</div></div></div>
+<div style="text-align:center"><div class="eyebrow" style="margin-top:28px">Welcome to MÖA</div><h1>Discover your vibe.</h1><p>A café, a community, and a little moment made just for you.</p>
+<button class="btn primary" onclick="startQuiz()">Take the 30-second quiz →</button><button class="btn" onclick="show('experiences')">Explore experiences</button></div>
+</section>
+<section id="quiz" class="screen">
+<button class="back" onclick="show('welcome')">← Back</button><div class="eyebrow" style="margin-top:22px">Your vibe quiz</div><div class="progress"><div id="bar" style="width: 100%;"></div></div>
+<h2 id="question">Choose your perfect MÖA moment.</h2><p>Choose the option that feels most like you.</p><div id="choices"><button class="choice " onclick="answer('creative')"><span>A creative afternoon</span><span>○</span></button><button class="choice selected" onclick="answer('cozy')"><span>Coffee and good conversation</span><span>○</span></button><button class="choice " onclick="answer('explorer')"><span>A new adventure</span><span>○</span></button><button class="choice " onclick="answer('calm')"><span>A peaceful reset</span><span>○</span></button><button class="choice " onclick="answer('social')"><span>A fun moment with friends</span><span>○</span></button></div><button id="next" class="btn primary" onclick="nextQuestion()">Reveal my vibe ✦</button>
+</section>
+<section id="result" class="screen active" style="text-align:center"><div class="eyebrow">Your vibe is...</div><h1 id="resultName">The Curious Explorer</h1><div id="symbol" style="font-size:64px">✧</div><p id="resultDesc">You are ready to discover something new and enjoy experiences that spark curiosity.</p><div id="tags" class="tags"><span class="pill">Adventurous</span><span class="pill">Curious</span><span class="pill">Open-minded</span></div><button class="btn primary" onclick="show('experiences')">Explore your experiences →</button><button class="btn" onclick="startQuiz()">Take the quiz again</button></section>
+<section id="home" class="screen"><div class="eyebrow">Welcome to MÖA</div><h2>Find your moment.</h2><div class="panel"><div class="eyebrow">Your personalized pick</div><h2 id="homeVibe">Discover your vibe</h2><p id="homeCopy">Take the quiz to find experiences made for you.</p><button class="btn" onclick="show('experiences')">Explore experiences →</button></div><h2 style="font-size:25px;margin-top:30px">Featured experiences</h2><div id="featured" class="grid"><button class="tile" onclick="detail(1)"><div class="pic">🧁</div><div class="body"><div class="eyebrow">Creative</div><h3>Cupcake Decorating Workshop</h3><p>$120 MXN</p></div></button><button class="tile" onclick="detail(2)"><div class="pic">🎨</div><div class="body"><div class="eyebrow">Creative</div><h3>Paint &amp; Sip</h3><p>$150 MXN</p></div></button><button class="tile" onclick="detail(3)"><div class="pic">📓</div><div class="body"><div class="eyebrow">Creative</div><h3>Creative Journaling</h3><p>$100 MXN</p></div></button><button class="tile" onclick="detail(4)"><div class="pic">☕</div><div class="body"><div class="eyebrow">Café</div><h3>Coffee Tasting</h3><p>$90 MXN</p></div></button></div><div class="panel" style="background:var(--green)"><div class="eyebrow">More experiences. More you.</div><h2 style="font-size:25px">MÖA Vibe Pass</h2><p>$149 MXN / month</p><button class="btn" onclick="show('pass')">Explore →</button></div></section>
+<section id="experiences" class="screen"><button class="back" onclick="show('home')">← Home</button><div class="eyebrow" style="margin-top:22px">Discover</div><h2>Your experiences</h2><p>Create something memorable.</p><div id="list" class="list"></div></section>
+<section id="detail" class="screen"><button class="back" onclick="show('experiences')">← Back to experiences</button><div id="detailContent"></div></section>
+<section id="pass" class="screen" style="text-align:center"><div class="eyebrow">Membership</div><h2>MÖA Vibe Pass</h2><p>More experiences. More you.</p><div class="panel" style="text-align:left"><h2>$149 <span class="small">MXN / month</span></h2><p>✓ Exclusive experiences<br>✓ Special discounts<br>✓ Early access to events<br>✓ Personalized recommendations</p><button id="join" class="btn primary" onclick="joinPass()">Join the Vibe Pass</button><p id="joinMsg" class="small"></p></div></section>
+<section id="profile" class="screen" style="text-align:center"><div class="eyebrow">Your profile</div><h2 id="profileVibe">Your MÖA vibe</h2><p id="profileCopy">Take the quiz to personalize your experience.</p><div class="panel" style="text-align:left"><p>Quiz completed: <b id="completed">Not yet</b></p><p>Vibe Pass: <b id="status">Not a member</b></p></div><button class="btn primary" onclick="startQuiz()">Discover your vibe</button></section>
+</main>
+<nav><button onclick="show('home')">⌂<br>Home</button><button onclick="show('experiences')">▤<br>Experiences</button><button onclick="show('pass')">✦<br>Vibe Pass</button><button onclick="show('profile')">♙<br>Profile</button></nav>
+</div>
+<script>
+const questions=[
+["What's your ideal way to spend a free day?",[["A cozy café date","cozy"],["Exploring a new place","explorer"],["Creating something","creative"],["Relaxing at home","calm"]]],
+["Which activity sounds most exciting?",[["Decorating cupcakes","creative"],["Discovering new flavors","cozy"],["Painting with friends","social"],["Journaling in a quiet corner","calm"]]],
+["Which color feels most like you?",[["Beige","cozy"],["Pink","creative"],["Brown","calm"],["Green","explorer"],["Blue","calm"],["Black","social"]]],
+["What do you value most in an experience?",[["Making memories","social"],["Expressing myself","creative"],["Feeling inspired","explorer"],["Peace and comfort","calm"]]],
+["Choose your perfect MÖA moment.",[["A creative afternoon","creative"],["Coffee and good conversation","cozy"],["A new adventure","explorer"],["A peaceful reset","calm"],["A fun moment with friends","social"]]]
+];
+const profiles={
+creative:["The Creative Dreamer","You find beauty in the little things. You love inspiration and turning ideas into something real.","✦",["Creative","Curious","Inspired"]],
+cozy:["The Cozy Soul","You love meaningful moments, warm spaces, and good conversations.","☕",["Warm","Thoughtful","Relaxed"]],
+explorer:["The Curious Explorer","You are ready to discover something new and enjoy experiences that spark curiosity.","✧",["Adventurous","Curious","Open-minded"]],
+calm:["The Mindful Muse","You value calm moments, creativity, and thoughtful experiences.","☾",["Calm","Creative","Thoughtful"]],
+social:["The Social Spark","You bring energy and connection wherever you go.","♡",["Social","Fun","Expressive"]]
+};
+const experiences=[
+[1,"Cupcake Decorating Workshop","Creative",120,"1h 30m","🧁","Unleash your creativity and decorate your own cupcakes.","4 cupcakes · Materials · Drink"],
+[2,"Paint & Sip","Creative",150,"2h","🎨","Create your own artwork in a relaxed café atmosphere.","Canvas · Paints · Drink"],
+[3,"Creative Journaling","Creative",100,"1h","📓","A peaceful session to express your thoughts and discover new ideas.","Journal · Prompts · Cozy drink"],
+[4,"Coffee Tasting","Café",90,"1h","☕","Explore different flavors and discover your favorite coffee notes.","Tasting flight · Guide · Sweet treat"],
+[5,"Good Vibes Brunch","Social",180,"2h","🥐","A delicious brunch to share good food and great moments.","Brunch plate · Drink · Sweet treat"]
+];
+let step=0,answers=[],vibe=null,member=false;
+function show(id){document.querySelectorAll('.screen').forEach(x=>x.classList.toggle('active',x.id===id));if(id==='home')renderHome();if(id==='experiences')renderList();if(id==='profile')renderProfile();window.scrollTo(0,0)}
+function startQuiz(){step=0;answers=[];renderQuiz();show('quiz')}
+function renderQuiz(){let q=questions[step];document.getElementById('question').textContent=q[0];document.getElementById('bar').style.width=((step+1)/questions.length*100)+'%';document.getElementById('next').textContent=step===4?'Reveal my vibe ✦':'Next →';document.getElementById('next').disabled=!answers[step];document.getElementById('choices').innerHTML=q[1].map((a,i)=>`<button class="choice ${answers[step]===a[1]?'selected':''}" onclick="answer('${a[1]}')"><span>${a[0]}</span><span>○</span></button>`).join('')}
+function answer(a){answers[step]=a;renderQuiz()}
+function nextQuestion(){if(step<4){step++;renderQuiz()}else{const c={};answers.forEach(a=>c[a]=(c[a]||0)+1);vibe=Object.keys(c).sort((a,b)=>c[b]-c[a])[0]||'creative';const p=profiles[vibe];document.getElementById('resultName').textContent=p[0];document.getElementById('resultDesc').textContent=p[1];document.getElementById('symbol').textContent=p[2];document.getElementById('tags').innerHTML=p[3].map(x=>`<span class="pill">${x}</span>`).join('');show('result')}}
+function card(e){return `<button class="tile" onclick="detail(${e[0]})"><div class="pic">${e[5]}</div><div class="body"><div class="eyebrow">${e[2]}</div><h3>${e[1]}</h3><p>$${e[3]} MXN</p></div></button>`}
+function renderHome(){document.getElementById('homeVibe').textContent=vibe?profiles[vibe][0]:'Discover your vibe';document.getElementById('homeCopy').textContent=vibe?profiles[vibe][1]:'Take the quiz to find experiences made for you.';document.getElementById('featured').innerHTML=experiences.slice(0,4).map(card).join('')}
+function renderList(){document.getElementById('list').innerHTML=experiences.map(e=>`<button class="item" onclick="detail(${e[0]})"><div class="pic">${e[5]}</div><div><div class="eyebrow">${e[2]}</div><h3>${e[1]}</h3><p>$${e[3]} MXN · ${e[4]}</p></div></button>`).join('')}
+function detail(id){let e=experiences.find(x=>x[0]===id);document.getElementById('detailContent').innerHTML=`<div class="hero" style="margin-top:22px;height:170px;font-size:65px">${e[5]}</div><div class="eyebrow" style="margin-top:24px">${e[2]}</div><h2>${e[1]}</h2><p>${e[4]} · All levels · $${e[3]} MXN</p><p>${e[6]}</p><p>Includes: ${e[7]}</p><button class="btn primary" onclick="this.textContent='Selected ✓';this.disabled=true;document.getElementById('bookMsg').textContent='Demo booking selected. Visit MÖA to confirm.'">Book this experience</button><p id="bookMsg" class="small"></p>`;show('detail')}
+function joinPass(){member=true;document.getElementById('join').textContent='Joined ✓';document.getElementById('join').disabled=true;document.getElementById('joinMsg').textContent='Welcome to the demo Vibe Pass!'}
+function renderProfile(){document.getElementById('profileVibe').textContent=vibe?profiles[vibe][0]:'Your MÖA vibe';document.getElementById('profileCopy').textContent=vibe?profiles[vibe][1]:'Take the quiz to personalize your experience.';document.getElementById('completed').textContent=vibe?'Completed':'Not yet';document.getElementById('status').textContent=member?'Active demo member':'Not a member'}
+renderHome();
+</script>
+
+</body></html>
